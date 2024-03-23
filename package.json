@@ -1,0 +1,40 @@
+{
+  "name": "@vitejs/test-ssr-react",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "NODE_ENV=develop node server",
+    "build": "npm run clean && node build.js && npm run build:js && npm run build:server",
+    "build:copy": "cp -p src/index.js  dist",
+    "build:test": "vite build --outDir public/static",
+    "build:client": "vite build --outDir dist/client",
+    "build:js": "vite build --mode client --outDir public/client",
+    "build:server": "vite build --ssr src/entry-server.jsx --outDir dist/server",
+    "generate": "vite build --outDir dist/static && npm run build:server && node prerender",
+    "clean": "rimraf dist && rimraf public/static",
+    "serve": "NODE_ENV=production node server",
+    "start": "NODE_ENV=develop node dist/index.js",
+    "debug": "node --inspect-brk server"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "vue": "^3.4.21",
+    "vue-router": "^4.3.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.11.30",
+    "@types/react": "^18.2.69",
+    "@types/react-dom": "^18.2.22",
+    "@vitejs/plugin-vue": "^5.0.4",
+    "compression": "^1.7.4",
+    "express": "^4.18.2",
+    "rimraf": "^5.0.5",
+    "serve-static": "^1.15.0",
+    "typescript": "^5.4.3",
+    "vite": "^5.2.4",
+    "vue-tsc": "^2.0.7"
+  }
+}
