@@ -13,13 +13,15 @@ const routes = Object.keys(pages).map((path) => {
   }
 })
 console.log("#App.vue");
-console.log(routes);
+//console.log(routes);
 let items = routes;
 </script>
 
 <template>
   <div>
-    <Header />
+    <li v-for="item in items" :key="item.path">
+      <router-link :to="'' + item.path">{{item.name}}</router-link>
+    </li>
     <hr />
     <router-view></router-view>
   </div>
@@ -30,16 +32,9 @@ let items = routes;
 
 <!--
 <hr />
+<Header />
 <h1>hello, vue</h1>
-<router-link to="/about">About</router-link>
-<router-link to="{ path: item.path }">link={{ item.name }}</router-link>
 <li v-for="item in items" :key="item.id">
-  <a href={{item.path}}>{{ item.name }}</a><br />
-  <router-link to="{ 
-  name: 'post',
-  params: {{id: item.path }} 
-  }
   ">link={{ item.name }}</router-link>
 </li>
-<hr />
 -->
